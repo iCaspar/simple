@@ -1,0 +1,34 @@
+{
+  "name": "icaspar/simple",
+  "description": "A simple online journal app.",
+  "minimum-stability": "stable",
+  "license": "unlicense",
+  "authors": [
+    {
+      "name": "Caspar Green",
+      "email": "cg@caspar.green",
+      "homepage": "https://caspar.green"
+    }
+  ],
+  "require": {
+    "php": "8.1",
+    "vlucas/phpdotenv": "5.4.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "9.5.20",
+    "mockery/mockery": "1.5.0",
+    "squizlabs/php_codesniffer": "3.6.2",
+    "phpstan/phpstan": "1.5.7",
+    "vimeo/psalm": "4.22.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ICaspar\\Simple\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ICaspar\\Simple\\Tests\\": "tests/"
+    }
+  }
+}

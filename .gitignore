@@ -1,0 +1,11 @@
+# .gitignore
+
+.DS_Store
+
+.env
+.phpunit*
+
+.idea
+vendor
+
+info.php
