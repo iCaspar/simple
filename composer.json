@@ -2,7 +2,7 @@
   "name": "icaspar/simple",
   "description": "A simple online journal app.",
   "minimum-stability": "stable",
-  "license": "unlicense",
+  "license": "GPL-3.0-or-later",
   "authors": [
     {
       "name": "Caspar Green",
