@@ -41,8 +41,8 @@
     "psalm": "vendor/bin/psalm",
     "checkall": [
       "@lint",
-      "@test-unit",
-      "@phpstan",
+      "@unit",
+      "@stan",
       "@psalm"
     ]
   }
