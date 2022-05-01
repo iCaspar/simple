@@ -33,5 +33,17 @@
     "psr-4": {
       "ICaspar\\Simple\\Tests\\": "tests/"
     }
+  },
+  "scripts": {
+    "lint": "vendor/bin/phpcs .",
+    "unit": "vendor/bin/phpunit",
+    "stan": "vendor/bin/phpstan",
+    "psalm": "vendor/bin/psalm",
+    "checkall": [
+      "@lint",
+      "@test-unit",
+      "@phpstan",
+      "@psalm"
+    ]
   }
 }
