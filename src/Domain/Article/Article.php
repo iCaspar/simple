@@ -18,6 +18,14 @@ final class Article
     private readonly DateTime $date;
 
     /**
+     * Instantiate an Article.
+     *
+     * @param string $title
+     * @param string $authorId
+     * @param string $content
+     * @param string|UuidInterface $uuid
+     * @param string|DateTime $date
+     *
      * @throws Exception
      * @throws InvalidUuidStringException
      */
