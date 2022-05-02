@@ -6,13 +6,13 @@ namespace ICaspar\Simple\Tests\Domain\Article;
 
 use DateTime;
 use Exception;
-use ICaspar\Simple\Domain\Article\Article;
+use ICaspar\Simple\Domain\Entities\Article;
 use PHPUnit\Framework\TestCase;
-use Ramsey\Uuid\Exception\InvalidUuidStringException;
 use Ramsey\Uuid\Uuid;
 
 /**
- * @covers \ICaspar\Simple\Domain\Article\Article
+ * @covers \ICaspar\Simple\Domain\Entities\Article
+ * @uses \ICaspar\Simple\Domain\Entities\EntityTrait
  */
 final class ArticleTest extends TestCase
 {
@@ -32,72 +32,6 @@ final class ArticleTest extends TestCase
 
     /**
      * @test
-     */
-    public function shouldThrowWhenInvalidUuid(): void
-    {
-        $this->expectException(InvalidUuidStringException::class);
-        $this->expectExceptionMessage('Invalid UUID string: not a valid uuid');
-
-        new Article(
-            'Title',
-            '1',
-            'Content',
-            'not a valid Uuid'
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function shouldAcceptUuidAsInstance(): void
-    {
-        $uuid = Uuid::uuid5(Article::ARTICLE_NAMESPACE, 'test');
-
-        $this->assertInstanceOf(
-            Article::class,
-            new Article('Title', '1', 'Content', $uuid)
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function shouldAcceptUuidAsString(): void
-    {
-        $uuidString = Uuid::uuid5(Article::ARTICLE_NAMESPACE, 'test')
-                          ->toString();
-
-        $this->assertInstanceOf(
-            Article::class,
-            new Article('Title', '1', 'Content', $uuidString)
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function shouldIdentifyMatchingUuid(): void
-    {
-        $differentArticle = new Article(
-            'Article Title',
-            '11',
-            'Some content.',
-            Uuid::uuid4()
-        );
-
-        $this->assertFalse(
-            $this->article->isSame($differentArticle),
-            'isSame() did not identify a different Article.'
-        );
-        $this->assertTrue(
-            $this->article->isSame($this->article),
-            'isSame() did not match an identical Article.'
-        );
-    }
-
-    /**
-     * @test
-     * @depends shouldIdentifyMatchingUuid
      */
     public function shouldGenerateNewUuidFromTitleAndAuthorWhenNoneGiven(): void
     {

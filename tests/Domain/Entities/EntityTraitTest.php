@@ -9,6 +9,10 @@ use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Exception\InvalidUuidStringException;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * @covers \ICaspar\Simple\Domain\Entities\Entity
+ * @covers \ICaspar\Simple\Domain\Entities\NullEntity
+ */
 final class EntityTraitTest extends TestCase
 {
     /**
