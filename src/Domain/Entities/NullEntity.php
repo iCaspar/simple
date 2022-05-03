@@ -5,22 +5,21 @@ declare(strict_types=1);
 namespace ICaspar\Simple\Domain\Entities;
 
 use Ramsey\Uuid\Exception\InvalidUuidStringException;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 final class NullEntity extends Entity
 {
     /**
-     * @param UuidInterface|string $uuid
-     * @param string $namespace
+     * Instantiate a Null Entity.
+     *
      * @param string $key
+     * @param UuidInterface|string $uuid
      *
      * @throws InvalidUuidStringException
      */
-    public function __construct(
-        UuidInterface|string $uuid,
-        string $namespace,
-        string $key
-    ) {
-        $this->uuid = $this->sanitizeToUuid($uuid, $namespace, $key);
+    public function __construct(string $key, UuidInterface|string $uuid = '')
+    {
+        $this->uuid = $this->sanitizeToUuid($uuid, Uuid::NIL, $key);
     }
 }
