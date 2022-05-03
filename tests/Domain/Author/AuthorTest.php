@@ -4,63 +4,45 @@ declare(strict_types=1);
 
 namespace ICaspar\Simple\Tests\Domain\Author;
 
-use ICaspar\Simple\Domain\Author\Author;
+use ICaspar\Simple\Domain\Entities\Author;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Exception\InvalidUuidStringException;
 use Ramsey\Uuid\Uuid;
 
 final class AuthorTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function shouldThrowWhenInvalidUuid(): void
-    {
-        $this->expectException(InvalidUuidStringException::class);
-        $this->expectExceptionMessage('Invalid UUID string: not a valid uuid');
+    private Author $author;
 
-        new Author(
+    public function setUp(): void
+    {
+        $this->author = new Author(
             'Caspar Green',
             'caspar@example.com',
-            'About the author:',
-            'not a valid Uuid'
+            'About me.'
         );
     }
 
     /**
      * @test
      */
-    public function shouldAcceptUuidAsInstance(): void
+    public function shouldReturnItsName(): void
     {
-        $uuid = Uuid::uuid5(Author::AUTHOR_NAMESPACE, 'Caspar Green');
-
-        $this->assertInstanceOf(
-            Author::class,
-            new Author(
-                'Caspar Green',
-                'caspar@example.com',
-                'About the author:',
-                $uuid
-            )
-        );
+        $this->assertSame('Caspar Green', $this->author->name());
     }
 
     /**
      * @test
      */
-    public function shouldAcceptUuidAsString(): void
+    public function shouldReturnItsEmail(): void
     {
-        $uuidString = Uuid::uuid5(Author::AUTHOR_NAMESPACE, 'test')
-                          ->toString();
+        $this->assertSame('caspar@example.com', $this->author->email());
+    }
 
-        $this->assertInstanceOf(
-            Author::class,
-            new Author(
-                'Caspar Green',
-                'caspar@example.com',
-                'About the author:',
-                $uuidString
-            )
-        );
+    /**
+     * @test
+     */
+    public function shouldReturnItsAbout(): void
+    {
+        $this->assertSame('About me.', $this->author->about());
     }
 }

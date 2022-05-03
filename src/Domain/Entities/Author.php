@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ICaspar\Simple\Domain\Author;
+namespace ICaspar\Simple\Domain\Entities;
 
 use Ramsey\Uuid\Exception\InvalidUuidStringException;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-final class Author
+final class Author extends Entity
 {
     public const AUTHOR_NAMESPACE = '94173f80-6dc6-40ca-b19b-0e2678ac3afb';
-
-    private readonly UuidInterface $uuid;
 
     /**
      * Instantiate an Author.
@@ -30,26 +28,40 @@ final class Author
         private readonly string $about,
         UuidInterface|string $uuid = ''
     ) {
-        $this->uuid = $this->sanitizeToUuid($uuid);
+        $this->uuid = $this->sanitizeToUuid(
+            $uuid,
+            self::AUTHOR_NAMESPACE,
+            $name
+        );
     }
 
     /**
-     * Sanitize to a Uuid instance.
+     * Return the name.
      *
-     * @param UuidInterface|string $uuid
-     *
-     * @return UuidInterface
-     *
-     * @throws InvalidUuidStringException
+     * @return string
      */
-    private function sanitizeToUuid(UuidInterface|string $uuid): UuidInterface
+    public function name(): string
     {
-        $uuid = empty($uuid)
-            ? Uuid::uuid5(self::AUTHOR_NAMESPACE, $this->name)
-            : $uuid;
+        return $this->name;
+    }
 
-        return $uuid instanceof UuidInterface
-            ? $uuid
-            : Uuid::fromString($uuid);
+    /**
+     * Return the email.
+     *
+     * @return string
+     */
+    public function email(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * Return the about.
+     *
+     * @return string
+     */
+    public function about(): string
+    {
+        return $this->about;
     }
 }
