@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ICaspar\Simple\Tests\Domain\Article;
+namespace ICaspar\Simple\Tests\Domain\Entities;
 
 use DateTime;
 use Exception;

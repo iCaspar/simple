@@ -2,12 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ICaspar\Simple\Tests\Domain\Author;
+namespace ICaspar\Simple\Tests\Domain\Entities;
 
 use ICaspar\Simple\Domain\Entities\Author;
 use PHPUnit\Framework\TestCase;
-use Ramsey\Uuid\Exception\InvalidUuidStringException;
-use Ramsey\Uuid\Uuid;
 
 final class AuthorTest extends TestCase
 {
