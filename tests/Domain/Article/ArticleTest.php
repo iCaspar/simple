@@ -33,26 +33,6 @@ final class ArticleTest extends TestCase
     /**
      * @test
      */
-    public function shouldGenerateNewUuidFromTitleAndAuthorWhenNoneGiven(): void
-    {
-        $expectedArticle = new Article(
-            'Title',
-            '1',
-            'Content',
-            Uuid::uuid5(
-                Article::ARTICLE_NAMESPACE,
-                'Title1'
-            )
-        );
-
-        $article = new Article('Title', '1', 'Content');
-
-        $this->assertTrue($expectedArticle->isSame($article));
-    }
-
-    /**
-     * @test
-     */
     public function shouldThrowWhenInvalidDate(): void
     {
         $this->expectException(Exception::class);
