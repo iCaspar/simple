@@ -48,5 +48,4 @@ trait EntityTrait
     {
         return $this->uuid->equals($entity->uuid);
     }
-
 }
