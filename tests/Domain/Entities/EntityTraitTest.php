@@ -23,7 +23,7 @@ final class EntityTraitTest extends TestCase
         $this->expectException(InvalidUuidStringException::class);
         $this->expectExceptionMessage('Invalid UUID string: not a valid uuid');
 
-        new NullEntity('not a valid Uuid', Uuid::NIL, 'test');
+        new NullEntity('', 'Not a valid uuid');
     }
 
     /**
@@ -35,7 +35,7 @@ final class EntityTraitTest extends TestCase
 
         $this->assertInstanceOf(
             NullEntity::class,
-            new NullEntity($uuid, Uuid::NIL, 'test')
+            new NullEntity('', $uuid)
         );
     }
 
@@ -49,8 +49,19 @@ final class EntityTraitTest extends TestCase
 
         $this->assertInstanceOf(
             NullEntity::class,
-            new NullEntity($uuidString, Uuid::NIL, 'test')
+            new NullEntity('', $uuidString)
         );
+    }
+
+    /**
+     * @test
+     * @depends shouldIdentifyMatchingUuid
+     */
+    public function shouldGenerateNewUuidFromKeyWhenNoUuidGiven(): void
+    {
+        $expectedEntity = new NullEntity('');
+
+        $this->assertTrue($expectedEntity->isSame($expectedEntity));
     }
 
     /**
@@ -58,18 +69,9 @@ final class EntityTraitTest extends TestCase
      */
     public function shouldIdentifyMatchingUuid(): void
     {
-        $namespace = Uuid::uuid4()->toString();
-        $entityA = new NullEntity(
-            '',
-            $namespace,
-            'test1'
-        );
+        $entityA   = new NullEntity('test1');
 
-        $entityB = new NullEntity(
-            '',
-            $namespace,
-            'test2'
-        );
+        $entityB = new NullEntity('test2');
 
         $this->assertTrue(
             $entityA->isSame($entityA),
