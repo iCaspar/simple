@@ -13,6 +13,16 @@ trait EntityTrait
     protected UuidInterface $uuid;
 
     /**
+     * Get the uuid.
+     *
+     * @return string
+     */
+    public function id(): string
+    {
+        return $this->uuid->toString();
+    }
+
+    /**
      * Sanitize to a Uuid instance.
      *
      * @param UuidInterface|string $uuid

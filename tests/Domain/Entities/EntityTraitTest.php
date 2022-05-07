@@ -56,6 +56,7 @@ final class EntityTraitTest extends TestCase
     /**
      * @test
      * @depends shouldIdentifyMatchingUuid
+     * @depends shouldAcceptUuidAsString
      */
     public function shouldGenerateNewUuidFromKeyWhenNoUuidGiven(): void
     {
@@ -66,11 +67,24 @@ final class EntityTraitTest extends TestCase
 
     /**
      * @test
+     * @depends shouldAcceptUuidAsInstance
+     */
+    public function shouldReturnItsUuidAsString(): void
+    {
+        $uuid = Uuid::uuid5(Uuid::NIL, 'test');
+
+        $entity = new NullEntity('', $uuid);
+
+        $this->assertSame($uuid->toString(), $entity->id());
+    }
+
+    /**
+     * @test
+     * @depends shouldAcceptUuidAsString
      */
     public function shouldIdentifyMatchingUuid(): void
     {
-        $entityA   = new NullEntity('test1');
-
+        $entityA = new NullEntity('test1');
         $entityB = new NullEntity('test2');
 
         $this->assertTrue(
