@@ -11,7 +11,7 @@ use Mockery;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers AuthorManager
+ * @covers \ICaspar\Simple\Domain\AuthorManager
  */
 final class AuthorManagerTest extends TestCase
 {
@@ -28,6 +28,8 @@ final class AuthorManagerTest extends TestCase
 
     /**
      * @test
+     * @uses \ICaspar\Simple\Domain\Entities\Author
+     * @uses \ICaspar\Simple\Domain\Entities\EntityTrait::sanitizeToUuid()
      */
     public function shouldCreateAnAuthor(): void
     {
