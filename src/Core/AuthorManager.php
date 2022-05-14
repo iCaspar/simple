@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ICaspar\Simple\Core;
 
 use ICaspar\Simple\Core\Author\Author;
-use ICaspar\Simple\Core\Ports\Primary\AuthorService;
 use ICaspar\Simple\Core\Ports\Secondary\AuthorRepository;
+use ICaspar\Simple\Core\Ports\Services\AuthorService;
 use Ramsey\Uuid\Uuid;
 
 final class AuthorManager implements AuthorService

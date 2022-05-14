@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ICaspar\Simple\Core\Ports\Primary;
+namespace ICaspar\Simple\Core\Ports\Services;
 
 use ICaspar\Simple\Core\Author\Author;
 use ICaspar\Simple\Core\Collections\AuthorCollection;
