@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ICaspar\Simple\Tests\Domain;
+namespace ICaspar\Simple\Tests\Core;
 
-use ICaspar\Simple\Domain\AuthorManager;
-use ICaspar\Simple\Domain\Entities\Author;
-use ICaspar\Simple\Domain\Ports\Secondary\AuthorRepository;
+use ICaspar\Simple\Core\Author\Author;
+use ICaspar\Simple\Core\AuthorManager;
+use ICaspar\Simple\Core\Ports\Secondary\AuthorRepository;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \ICaspar\Simple\Domain\AuthorManager
+ * @covers \ICaspar\Simple\Core\AuthorManager
  */
 final class AuthorManagerTest extends TestCase
 {
@@ -28,8 +28,8 @@ final class AuthorManagerTest extends TestCase
 
     /**
      * @test
-     * @uses \ICaspar\Simple\Domain\Entities\Author
-     * @uses \ICaspar\Simple\Domain\Entities\EntityTrait::sanitizeToUuid()
+     * @uses \ICaspar\Simple\Core\Author\Author
+     * @uses \ICaspar\Simple\Core\Entities\EntityTrait::sanitizeToUuid()
      */
     public function shouldCreateAnAuthor(): void
     {

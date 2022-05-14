@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ICaspar\Simple\Tests\Domain\Entities;
+namespace ICaspar\Simple\Tests\Core\Entities;
 
 use DateTime;
 use Exception;
-use ICaspar\Simple\Domain\Entities\Article;
+use ICaspar\Simple\Core\Entities\Article;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 /**
- * @covers \ICaspar\Simple\Domain\Entities\Article
- * @uses \ICaspar\Simple\Domain\Entities\EntityTrait
+ * @covers \ICaspar\Simple\Core\Entities\Article
+ * @uses \ICaspar\Simple\Core\Entities\EntityTrait
  */
 final class ArticleTest extends TestCase
 {

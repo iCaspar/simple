@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ICaspar\Simple\Tests\Domain\Entities;
+namespace ICaspar\Simple\Tests\Core\Entities;
 
-use ICaspar\Simple\Domain\Entities\NullEntity;
+use ICaspar\Simple\Core\Entities\NullEntity;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Exception\InvalidUuidStringException;
 use Ramsey\Uuid\Uuid;
 
 /**
- * @covers \ICaspar\Simple\Domain\Entities\Entity
- * @covers \ICaspar\Simple\Domain\Entities\NullEntity
+ * @covers \ICaspar\Simple\Core\Entities\Entity
+ * @covers \ICaspar\Simple\Core\Entities\NullEntity
  */
 final class EntityTraitTest extends TestCase
 {

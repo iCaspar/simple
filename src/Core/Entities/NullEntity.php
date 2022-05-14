@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ICaspar\Simple\Domain\Entities;
+namespace ICaspar\Simple\Core\Entities;
 
 use Ramsey\Uuid\Exception\InvalidUuidStringException;
 use Ramsey\Uuid\Uuid;

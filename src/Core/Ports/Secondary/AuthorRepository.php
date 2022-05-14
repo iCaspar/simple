@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ICaspar\Simple\Domain\Ports\Secondary;
+namespace ICaspar\Simple\Core\Ports\Secondary;
 
-use ICaspar\Simple\Domain\Entities\Author;
+use ICaspar\Simple\Core\Author\Author;
 
 interface AuthorRepository
 {

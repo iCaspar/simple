@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ICaspar\Simple\Tests\Domain\Entities;
+namespace ICaspar\Simple\Tests\Core\Author;
 
-use ICaspar\Simple\Domain\Entities\Author;
+use ICaspar\Simple\Core\Author\Author;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Rfc4122\UuidV5;
 
 final class AuthorTest extends TestCase
 {
@@ -42,5 +43,15 @@ final class AuthorTest extends TestCase
     public function shouldReturnItsAbout(): void
     {
         $this->assertSame('About me.', $this->author->about());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldReturnItsUuid(): void
+    {
+        $uuid = UuidV5::uuid5(Author::NAMESPACE, 'Caspar Greencaspar@example.com')->toString();
+
+        $this->assertSame($uuid, $this->author->uuid());
     }
 }

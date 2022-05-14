@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ICaspar\Simple\Domain;
+namespace ICaspar\Simple\Core;
 
-use ICaspar\Simple\Domain\Entities\Author;
-use ICaspar\Simple\Domain\Ports\Primary\AuthorService;
-use ICaspar\Simple\Domain\Ports\Secondary\AuthorRepository;
+use ICaspar\Simple\Core\Author\Author;
+use ICaspar\Simple\Core\Ports\Primary\AuthorService;
+use ICaspar\Simple\Core\Ports\Secondary\AuthorRepository;
 use Ramsey\Uuid\Uuid;
 
 final class AuthorManager implements AuthorService
@@ -27,7 +27,7 @@ final class AuthorManager implements AuthorService
      */
     public function create(string $name, string $email, string $about, string $uuid = ''): Author
     {
-        $uuid = ! empty($uuid) ? $uuid : Uuid::uuid5(Author::AUTHOR_NAMESPACE, $name);
+        $uuid = ! empty($uuid) ? $uuid : Uuid::uuid5(Author::NAMESPACE, $name);
         $author = new Author($name, $email, $about, $uuid);
         $this->repository->save($author);
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ICaspar\Simple\Domain\Ports\Primary;
+namespace ICaspar\Simple\Core\Ports\Primary;
 
-use ICaspar\Simple\Domain\Collections\AuthorCollection;
-use ICaspar\Simple\Domain\Entities\Author;
+use ICaspar\Simple\Core\Author\Author;
+use ICaspar\Simple\Core\Collections\AuthorCollection;
 
 interface AuthorService
 {
