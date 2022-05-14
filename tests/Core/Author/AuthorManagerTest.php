@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ICaspar\Simple\Tests\Core;
+namespace ICaspar\Simple\Tests\Core\Author;
 
 use ICaspar\Simple\Core\Author\Author;
-use ICaspar\Simple\Core\AuthorManager;
+use ICaspar\Simple\Core\Author\AuthorManager;
 use ICaspar\Simple\Core\Ports\Secondary\AuthorRepository;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \ICaspar\Simple\Core\AuthorManager
+ * @covers \ICaspar\Simple\Core\Author\AuthorManager
  */
 final class AuthorManagerTest extends TestCase
 {
