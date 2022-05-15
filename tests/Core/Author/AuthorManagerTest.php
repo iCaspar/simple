@@ -6,8 +6,7 @@ namespace ICaspar\Simple\Tests\Core\Author;
 
 use ICaspar\Simple\Core\Author\Author;
 use ICaspar\Simple\Core\Author\AuthorManager;
-use ICaspar\Simple\Core\Ports\Secondary\AuthorRepository;
-use Mockery;
+use ICaspar\Simple\Tests\Stubs\Core\Author\AuthorRepositoryStub;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,11 +18,7 @@ final class AuthorManagerTest extends TestCase
 
     public function setUp(): void
     {
-        $repository = Mockery::mock(AuthorRepository::class);
-        $repository->allows('save');
-
-        /** @var AuthorRepository $repository */
-        $this->manager = new AuthorManager($repository);
+        $this->manager = new AuthorManager(new AuthorRepositoryStub());
     }
 
     /**
