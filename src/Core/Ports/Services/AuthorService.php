@@ -20,4 +20,13 @@ interface AuthorService
      * @return Author
      */
     public function create(string $name, string $email, string $about, string $uuid = ''): Author;
+
+    /**
+     * Get Author(s) by name.
+     *
+     * @param string $name
+     *
+     * @return Author[]
+     */
+    public function getByName(string $name): array;
 }

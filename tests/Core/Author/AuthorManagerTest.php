@@ -6,9 +6,9 @@ namespace ICaspar\Simple\Tests\Core\Author;
 
 use ICaspar\Simple\Core\Author\Author;
 use ICaspar\Simple\Core\Author\AuthorManager;
-use ICaspar\Simple\Tests\Stubs\Core\Author\AuthorRepositoryStub;
+use ICaspar\Simple\Core\Ports\Repositories\AuthorRepository;
+use Mockery;
 use PHPUnit\Framework\TestCase;
-use Ramsey\Uuid\Rfc4122\UuidV5;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -16,11 +16,13 @@ use Ramsey\Uuid\Uuid;
  */
 final class AuthorManagerTest extends TestCase
 {
+    private AuthorRepository $repository;
     private AuthorManager $manager;
 
     public function setUp(): void
     {
-        $this->manager = new AuthorManager(new AuthorRepositoryStub());
+        $this->repository       = Mockery::mock(AuthorRepository::class);
+        $this->manager    = new AuthorManager($this->repository);
     }
 
     /**
@@ -31,8 +33,29 @@ final class AuthorManagerTest extends TestCase
     public function shouldReturnTheCreatedAuthor(): void
     {
         $uuid = Uuid::uuid5(Author::NAMESPACE, 'Caspar Greencaspar@example.com')->toString();
+
+        $this->repository->allows('save');
+
         $author = $this->manager->create('Caspar Green', 'caspar@example.com', 'About me.');
 
         $this->assertSame($uuid, $author->uuid());
+    }
+
+    /**
+     * @test
+     * @uses \ICaspar\Simple\Core\Author\Author
+     * @uses \ICaspar\Simple\Core\Entities\EntityTrait::sanitizeToUuid()
+     */
+    public function shouldReturnAuthorsByNameWhenTheyExist(): void
+    {
+        $author1 = new Author('Caspar Green', 'caspar@example.com', '');
+        $author2 = new Author('Caspar Green', 'cgreen@example.com', '');
+
+        $this->repository->allows('getByName')
+                         ->andReturns([$author1, $author2]);
+
+        $authors = $this->manager->getByName('Caspar Green');
+
+        $this->assertSame([$author1, $author2], $authors);
     }
 }

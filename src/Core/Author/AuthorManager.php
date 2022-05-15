@@ -6,11 +6,10 @@ namespace ICaspar\Simple\Core\Author;
 
 use ICaspar\Simple\Core\Ports\Repositories\AuthorRepository;
 use ICaspar\Simple\Core\Ports\Services\AuthorService;
-use Ramsey\Uuid\Uuid;
 
 final class AuthorManager implements AuthorService
 {
-    public function __construct(private AuthorRepository $repository)
+    public function __construct(private readonly AuthorRepository $repository)
     {
     }
 
@@ -30,5 +29,17 @@ final class AuthorManager implements AuthorService
         $this->repository->save($author);
 
         return $author;
+    }
+
+    /**
+     * Get Author(s) by name.
+     *
+     * @param string $name
+     *
+     * @return Author[]
+     */
+    public function getByName(string $name): array
+    {
+        return $this->repository->getByName($name);
     }
 }
