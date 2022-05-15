@@ -8,6 +8,8 @@ use ICaspar\Simple\Core\Author\Author;
 use ICaspar\Simple\Core\Author\AuthorManager;
 use ICaspar\Simple\Tests\Stubs\Core\Author\AuthorRepositoryStub;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Rfc4122\UuidV5;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @covers \ICaspar\Simple\Core\Author\AuthorManager
@@ -26,10 +28,11 @@ final class AuthorManagerTest extends TestCase
      * @uses \ICaspar\Simple\Core\Author\Author
      * @uses \ICaspar\Simple\Core\Entities\EntityTrait::sanitizeToUuid()
      */
-    public function shouldCreateAnAuthor(): void
+    public function shouldReturnTheCreatedAuthor(): void
     {
+        $uuid = Uuid::uuid5(Author::NAMESPACE, 'Caspar Greencaspar@example.com')->toString();
         $author = $this->manager->create('Caspar Green', 'caspar@example.com', 'About me.');
 
-        $this->assertInstanceOf(Author::class, $author);
+        $this->assertSame($uuid, $author->uuid());
     }
 }

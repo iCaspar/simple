@@ -26,7 +26,6 @@ final class AuthorManager implements AuthorService
      */
     public function create(string $name, string $email, string $about, string $uuid = ''): Author
     {
-        $uuid = ! empty($uuid) ? $uuid : Uuid::uuid5(Author::NAMESPACE, $name);
         $author = new Author($name, $email, $about, $uuid);
         $this->repository->save($author);
 
